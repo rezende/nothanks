@@ -1,15 +1,15 @@
 import React from 'react'
 import { Client } from 'boardgame.io/react'
-import { IdRatherNot } from './game'
-import { IdRatherNotBoard } from './board';
+import { NoThanks } from './game'
+import { NoThanksBoard } from './board';
 //import logger from 'redux-logger'
 //import { applyMiddleware } from 'redux'
 
 
-const IdRatherNotClient = Client({
-  game: IdRatherNot,
+const NoThanksClient = Client({
+  game: NoThanks,
   numPlayers: 3,
-  board: IdRatherNotBoard,
+  board: NoThanksBoard,
   multiplayer: { local: true },
   //enhancer: applyMiddleware(logger)
 });
@@ -19,9 +19,9 @@ const IdRatherNotClient = Client({
 
 const App = () => (
   <div>
-    <IdRatherNotClient playerID="0" />
-    <IdRatherNotClient playerID="1" />
-    <IdRatherNotClient playerID="2" />
+    <NoThanksClient playerID="0" />
+    <NoThanksClient playerID="1" />
+    <NoThanksClient playerID="2" />
   </div>
 )
 

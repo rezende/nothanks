@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export class IdRatherNotBoard extends React.Component {
+export class NoThanksBoard extends React.Component {
   noThanks() {
     this.props.moves.noThanks()
     this.props.events.endTurn()

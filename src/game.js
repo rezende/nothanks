@@ -40,7 +40,7 @@ export function calculateCardScore(deck) {
   return score
 }
 
-export const IdRatherNot = Game(
+export const NoThanks = Game(
   {
     setup: (ctx) => {
       let deck = ctx.random.Shuffle(range(33, 3)).slice(0, 24)
