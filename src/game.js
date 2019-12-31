@@ -24,11 +24,14 @@ function range(size, startAt = 0) {
 }
 
 function calculateFinalScore(player) {
-  return calculateCardScore(player.deck) - player.tokens
+  return calculateCardScore(player.cards) - player.tokens
 }
 
 export function calculateCardScore(deck) {
-  const deckLength = deck.length
+  let deckLength = 0
+  deckLength = typeof deck == 'undefined' ? 0 : deck.length
+  if (deckLength === 0)
+    return 0
   let score = 0
   for (const [i, card] of deck.entries()) {
     if (i+1 === deckLength)
@@ -60,9 +63,8 @@ export const NoThanks = Game(
     // playerView: PlayerView.STRIP_SECRETS,
     moves: {
       noThanks(G, ctx) {
-        if (G.players[ctx.currentPlayer].tokens < 1) {
+        if (G.players[ctx.currentPlayer].tokens < 1)
           return INVALID_MOVE
-        }
         return {
           ...G,
           tableTokens: G.tableTokens + 1,
@@ -76,6 +78,8 @@ export const NoThanks = Game(
         }
       },
       takeCard(G, ctx) {
+        const playerDeck = [...G.players[ctx.currentPlayer].cards]
+        const newPlayerDeck = insert(G.tableCard, playerDeck)
         let deck = [...G.deck]
         if (deck.length < 1) {
           ctx.events.endGame(
@@ -88,10 +92,8 @@ export const NoThanks = Game(
             }
            )
         }
-        //TODO: separate public and private info
         const newTableCard = deck.pop()
-        const playerDeck = [...G.players[ctx.currentPlayer].cards]
-        const newDeck = insert(G.tableCard, playerDeck)
+        //TODO: separate public and private info
         return {
           ...G,
           tableTokens: 0,
@@ -101,8 +103,8 @@ export const NoThanks = Game(
             [ctx.currentPlayer]: {
               ...G.players[ctx.currentPlayer],
               tokens: G.players[ctx.currentPlayer].tokens + G.tableTokens,
-              cards: newDeck,
-              publicScore: calculateCardScore(newDeck)
+              cards: newPlayerDeck,
+              publicScore: calculateCardScore(newPlayerDeck)
             }
           },
           deck: deck
