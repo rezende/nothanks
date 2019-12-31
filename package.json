@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "boardgame.io": "^0.32.1",
+    "boardgame.io": "^0.35.1",
+    "bufferutil": "^4.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.3.0",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "typescript": "^3.7.4",
+    "utf-8-validate": "^5.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

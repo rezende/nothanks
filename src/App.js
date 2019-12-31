@@ -1,17 +1,15 @@
 import React from 'react'
+import { Local } from 'boardgame.io/multiplayer'
 import { Client } from 'boardgame.io/react'
 import { NoThanks } from './game'
 import { NoThanksBoard } from './board';
-//import logger from 'redux-logger'
-//import { applyMiddleware } from 'redux'
 
 
 const NoThanksClient = Client({
   game: NoThanks,
   numPlayers: 3,
   board: NoThanksBoard,
-  multiplayer: { local: true },
-  //enhancer: applyMiddleware(logger)
+  multiplayer: Local(),
 });
 
 
