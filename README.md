@@ -1,20 +1,26 @@
 No Thanks Implementation using Boardgame.IO
 
-## Available Scripts
+## TODO
 
-In the project directory, you can run:
+ - Set up real multiplayer:
+  - Set up server
+  - Set up clients
+  - Set up lobby
+  - Set up authentication
+  - Save game state on database
+  
+- Improve UI (do you even CSS bro?)
+
+
+## Available Scripts
 
 ### `npm install`
 
-Run this command first!
 
 ### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
 ### `npm test`
 
