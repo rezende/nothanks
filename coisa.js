@@ -1,0 +1,1 @@
+const coisa = () => (0)
