@@ -1,6 +1,6 @@
 import { calculateCardScore } from "./helpers";
 
-describes("Calculates Card Store", () => {
+describe("Calculates Card Score", () => {
   it("scores for empty deck", () => {
     let deck = [];
     const score = calculateCardScore(deck);
