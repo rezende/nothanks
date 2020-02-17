@@ -2,7 +2,7 @@ No Thanks Implementation using Boardgame.io
 
 ## Available Scripts
 
-### `npm install`
+### `yarn install`
 
 
 ### `npm start`
