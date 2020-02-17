@@ -2,12 +2,12 @@ import React from "react";
 import { Local } from "boardgame.io/multiplayer";
 import { Client } from "boardgame.io/react";
 import NoThanks from "./game";
-import Board from "./components/Board";
+import NoThanksBoard from "./components/Board";
 
 const NoThanksClient = Client({
   game: NoThanks,
   numPlayers: 3,
-  board: Board,
+  board: NoThanksBoard,
   multiplayer: Local()
 });
 
