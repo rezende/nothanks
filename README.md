@@ -1,16 +1,4 @@
-No Thanks Implementation using Boardgame.IO
-
-## TODO
-
- - Set up real multiplayer:
-  - Set up server
-  - Set up clients
-  - Set up lobby
-  - Set up authentication
-  - Save game state on database
-  
-- Improve UI (do you even CSS bro?)
-
+No Thanks Implementation using Boardgame.io
 
 ## Available Scripts
 
