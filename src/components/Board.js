@@ -1,4 +1,49 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
+import TokenIcon from "@material-ui/icons/RadioButtonChecked";
+
+import {
+  StyledPaper,
+  Content,
+  TableCard,
+  PlayerCard,
+  MovesButton
+} from "./Board.style";
+
+const TokenList = ({ size, isTable }) => (
+  <>
+    {Array.from({ length: size }, (_, i) => (
+      <TokenIcon color="secondary" key={i} />
+    ))}
+    {`(${size} tokens${isTable ? " on table)" : ")"}`}
+  </>
+);
+
+const MovesList = ({
+  noThanksDisabled,
+  takeCardDisabled,
+  noThanks,
+  takeCard
+}) => (
+  <>
+    <MovesButton
+      variant="contained"
+      color="primary"
+      onClick={noThanks}
+      disabled={noThanksDisabled}
+    >
+      No Thanks
+    </MovesButton>
+    <MovesButton
+      variant="contained"
+      color="primary"
+      onClick={takeCard}
+      disabled={takeCardDisabled}
+    >
+      Take Card
+    </MovesButton>
+  </>
+);
 
 const Board = props => {
   const noThanks = () => {
@@ -11,45 +56,52 @@ const Board = props => {
 
   const { G, playerID, isActive, ctx } = props;
   return (
-    <div>
-      <p>
-        {" "}
-        <div style={{ display: "flex", "justify-content": "center" }}>
-          <span style={{ "font-weight": "bold", "font-size": "200%" }}>
+    <StyledPaper variant="outlined">
+      <Content>
+        <TableCard raised>
+          <Typography align="center" variant="h1">
             {G.tableCard}
-          </span>{" "}
-          <span>
-            {"o".repeat(G.tableTokens)} ({G.tableTokens})
-          </span>{" "}
-        </div>
-      </p>
-      <p>
-        <button
-          onClick={noThanks}
-          disabled={!isActive || G.players[playerID].tokens < 1}
-        >
-          No Thanks
-        </button>{" "}
-        <button onClick={takeCard} disabled={!isActive}>
-          Take Card
-        </button>
-      </p>
-      <p> My cards: [{G.players[playerID].cards.join("], [")}] </p>
-      <p>
-        {" "}
-        My tokens:{" "}
-        <span>
-          {"o".repeat(G.players[playerID].tokens)} ({G.players[playerID].tokens}
-          )
-        </span>{" "}
-      </p>
-      <p> My score: [{G.players[playerID].publicScore}] </p>
+          </Typography>
+        </TableCard>
+      </Content>
+
+      <Content margin>
+        <TokenList size={G.tableTokens} isTable />
+      </Content>
+
+      <MovesList
+        noThanksDisabled={!isActive || G.players[playerID].tokens < 1}
+        takeCardDisabled={!isActive}
+        noThanks={noThanks}
+        takeCard={takeCard}
+      />
+
+      <Content start={1}>
+        <Typography variant="h4">{`My cards: ${
+          G.players[playerID].cards.length ? "" : "nothing."
+        }`}</Typography>
+        {G.players[playerID].cards.map((card, _) => (
+          <PlayerCard key={card}>
+            <Typography variant="h6" align="center">
+              {card}
+            </Typography>
+          </PlayerCard>
+        ))}
+      </Content>
+
+      <Content start={1}>
+        <Typography variant="h4">{"My tokens:"}</Typography>
+        <TokenList size={G.players[playerID].tokens} />
+      </Content>
+
+      <Typography variant="h4">{`My score: ${G.players[playerID].publicScore}`}</Typography>
+
       {ctx.gameover && (
-        <div>
-          <p>Final Score {ctx.gameover.scores[playerID].final}</p>
-        </div>
+        <Typography variant="h4">
+          Final Score {ctx.gameover.scores[playerID].final}
+        </Typography>
       )}
-    </div>
+    </StyledPaper>
   );
 };
 
