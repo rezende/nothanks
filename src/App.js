@@ -1,22 +1,32 @@
 import React from "react";
-import { Local } from "boardgame.io/multiplayer";
-import { Client } from "boardgame.io/react";
-import NoThanks from "./game";
-import NoThanksBoard from "./components/Board";
+import { Client } from 'boardgame.io/react'
+import { NoThanks } from './game'
+import { NoThanksBoard } from './board';
+import { SocketIO } from 'boardgame.io/multiplayer'
+
+const NoThanksString= 'NOTHANKS'
 
 const NoThanksClient = Client({
   game: NoThanks,
   numPlayers: 3,
   board: NoThanksBoard,
-  multiplayer: Local()
+  multiplayer: SocketIO({ server: 'localhost:8000' }),
 });
 
+const getPlayerID = () => ('0')
+
+const getGameRoomID = () => ('432')
+
+const getGame = (gameName) => {
+  if (gameName === NoThanksString)
+    return <NoThanksClient playerID={getPlayerID()} gameID={getGameRoomID()} />
+}
+
+
 const App = () => (
-  <>
-    <NoThanksClient playerID="0" />
-    <NoThanksClient playerID="1" />
-    <NoThanksClient playerID="2" />
-  </>
-);
+  <div>
+    {getGame(NoThanksString)}
+  </div>
+)
 
 export default App;
